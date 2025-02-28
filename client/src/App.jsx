@@ -1,16 +1,11 @@
-import { Route, Routes } from "react-router-dom";
-import HomePage from "./pages/home/HomePage";
+import { Button } from "./components/ui/button";
 
 function App() {
   return (
-    <>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/*" element={<NotFound />} />
-      </Routes>
-      <Footer />
-      <Toaster />
-    </>
+    <div>
+      <h1 className="text-red-300 text-center">Sieu</h1>
+      <Button variant={"outline"}>Button</Button>
+    </div>
   );
 }
 
