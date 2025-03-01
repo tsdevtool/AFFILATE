@@ -6,9 +6,7 @@ import MainLayout from "../layouts/MainLayout";
 const CourseDetailPage = () => {
   const { id } = useParams();
   const course = coursesData.find((c) => c.id === id);
-
-  const [currentLesson, setCurrentLesson] = useState(course.lessons[0]);
-
+  const [currentLesson, setCurrentLesson] = useState({});
   if (!course) {
     return <h1>Khóa học không tồn tại!</h1>;
   }
