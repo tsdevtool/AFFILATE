@@ -19,23 +19,22 @@ const CompanySlider = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       if (carouselRef.current) {
-        carouselRef.current.scrollBy({
-          left: 1, // Cuộn từ từ
-          behavior: "smooth",
-        });
+        const maxScroll =
+          carouselRef.current.scrollWidth - carouselRef.current.clientWidth;
 
-        // Khi cuộn đến cuối, reset về đầu
-        if (
-          carouselRef.current.scrollLeft + carouselRef.current.clientWidth >=
-          carouselRef.current.scrollWidth
-        ) {
-          carouselRef.current.scrollTo({ left: 0, behavior: "smooth" });
+        if (carouselRef.current.scrollLeft >= maxScroll) {
+          // Nếu đã đến cuối, reset ngay về đầu mà không có hiệu ứng giật
+          carouselRef.current.scrollTo({ left: 0, behavior: "instant" });
+        } else {
+          // Nếu chưa đến cuối, tiếp tục cuộn
+          carouselRef.current.scrollBy({ left: 1, behavior: "smooth" });
         }
       }
-    }, 30); // Cuộn mỗi 30ms (có thể tăng/giảm tốc độ)
+    }, 30); // Điều chỉnh tốc độ cuộn tại đây
 
     return () => clearInterval(interval);
   }, []);
+
   return (
     <section
       id="company"
