@@ -10,7 +10,7 @@ const Navbar = () => {
       <div className="flex items-center space-x-1 max-w-2xl">
         <span className="text-xl font-bold">
           <img
-            src={"./logo.png"}
+            src={"/logo.png"}
             alt="Logo"
             className="h-14 object-contain max-lg:h-20"
           />
