@@ -57,7 +57,7 @@ const Hero = () => {
                 <p className="text-lg max-md:text-xl mt-4">
                   {slide.description}
                 </p>
-                <button className="mt-6 bg-yellow-400/70 hover:bg-yellow-400 hover:text-red-600 text-red-800 px-6 py-3 rounded-lg text-lg font-bold shadow-md cursor-pointer">
+                <button className="mt-6 bg-red-400/70 hover:bg-red-400 hover:text-white-600 text-white-600 px-6 py-3 rounded-lg text-lg font-bold shadow-md cursor-pointer">
                   {slide.cta}
                 </button>
               </motion.div>
