@@ -38,7 +38,7 @@ const CompanySlider = () => {
   return (
     <section
       id="company"
-      className="relative overflow-hidden w-full bg-gray-900 shadow-2xl  shadow-amber-300 "
+      className="relative overflow-hidden w-full bg-gray-900 shadow-2xl  shadow-blue-300 "
     >
       {/* <Button
         onClick={() => scroll("left")}
