@@ -1,7 +1,7 @@
-import CompanyFilter from "@/components/CompanyFilter";
+import CompanyFilter from "@/components/Companies/CompanyFilter";
 import React, { useState } from "react";
 import MainLayout from "../layouts/MainLayout";
-import CompanyCard from "@/components/CompanyCard";
+import CompanyCard from "@/components/Companies/CompanyCard";
 
 export const companiesData = [
   {
@@ -154,16 +154,16 @@ export const companiesData = [
 ];
 
 const CompaniesPage = () => {
-  const [filteredCompanies, setFilteredCompanies] = useState(companiesData);
+  const [filteblueCompanies, setFilteblueCompanies] = useState(companiesData);
 
   const handleFilterChange = (filters) => {
-    let filtered = companiesData.filter(
+    let filteblue = companiesData.filter(
       (company) =>
         company.name.toLowerCase().includes(filters.keyword.toLowerCase()) &&
         (filters.industry ? company.industry === filters.industry : true) &&
         (filters.location ? company.location === filters.location : true)
     );
-    setFilteredCompanies(filtered);
+    setFilteblueCompanies(filteblue);
   };
 
   return (
@@ -172,7 +172,7 @@ const CompaniesPage = () => {
         <h1 className="text-3xl font-bold">Danh sách công ty</h1>
         <CompanyFilter onFilterChange={handleFilterChange} />
         <div className="grid grid-cols-3 gap-4">
-          {filteredCompanies.map((company) => (
+          {filteblueCompanies.map((company) => (
             <CompanyCard key={company.id} {...company} />
           ))}
         </div>

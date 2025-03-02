@@ -1,7 +1,7 @@
-import JobCard from "@/components/JobCard";
 import React from "react";
 import { useParams } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
+import JobCard from "@/components/Jobs/JobCard";
 
 const companiesData = {
   google: {

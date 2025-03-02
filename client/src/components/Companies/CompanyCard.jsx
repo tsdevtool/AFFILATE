@@ -1,7 +1,8 @@
 import React from "react";
-import { Card, CardContent } from "./ui/card";
+
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { Card, CardContent } from "../ui/card";
 const CompanyCard = ({ id, name, industry, location, logo, category }) => {
   // const navigate = useNavigate();
 

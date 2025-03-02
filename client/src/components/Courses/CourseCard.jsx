@@ -49,7 +49,9 @@ const CourseCard = ({ course }) => {
         <div className="mt-auto">
           <div className="flex items-center justify-between mt-3">
             {course.isPro ? (
-              <span className="text-red-500 font-bold">{course.price} VND</span>
+              <span className="text-blue-500 font-bold">
+                {course.price} VND
+              </span>
             ) : (
               <span className="text-green-500 font-bold">Miễn phí</span>
             )}

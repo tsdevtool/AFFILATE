@@ -1,7 +1,7 @@
-import JobFilter from "@/components/JobFilter";
 import React, { useState } from "react";
 import MainLayout from "../layouts/MainLayout";
-import JobCard from "@/components/JobCard";
+import JobFilter from "@/components/Jobs/JobFilter";
+import JobCard from "@/components/Jobs/JobCard";
 
 const jobsData = [
   {
@@ -27,16 +27,16 @@ const jobsData = [
   },
 ];
 const JobPage = () => {
-  const [filteredJobs, setFilteredJobs] = useState(jobsData);
+  const [filteblueJobs, setFilteblueJobs] = useState(jobsData);
 
   const handleFilterChange = (filters) => {
-    let filtered = jobsData.filter(
+    let filteblue = jobsData.filter(
       (job) =>
         job.title.toLowerCase().includes(filters.keyword.toLowerCase()) &&
         (filters.location ? job.location === filters.location : true) &&
         (filters.category ? job.title.includes(filters.category) : true)
     );
-    setFilteredJobs(filtered);
+    setFilteblueJobs(filteblue);
   };
 
   return (
@@ -44,7 +44,7 @@ const JobPage = () => {
       <h1 className="text-3xl font-bold">Danh sách việc làm</h1>
       <JobFilter onFilterChange={handleFilterChange} />
       <div className="grid grid-cols-3 gap-4">
-        {filteredJobs.map((job) => (
+        {filteblueJobs.map((job) => (
           <JobCard key={job.id} {...job} />
         ))}
       </div>

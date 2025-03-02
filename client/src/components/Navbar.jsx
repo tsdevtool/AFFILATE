@@ -6,7 +6,7 @@ import { Menu, X } from "lucide-react";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <nav className="bg-red-200 shadow-md py-4 md:px-26 px-6  flex justify-between items-center">
+    <nav className="bg-blue-200 shadow-md py-4 md:px-26 px-6  flex justify-between items-center">
       <div className="flex items-center space-x-1 max-w-2xl">
         <span className="text-xl font-bold">
           <img
@@ -18,19 +18,28 @@ const Navbar = () => {
         </span>
       </div>
       <div className="hidden lg:flex items-center justify-between space-x-6 text-gray-900 font-medium gap-10">
-        <Link to="/" className="hover:text-blue-500 font-bold text-2xl">
+        <Link
+          to="/"
+          className="hover:text-blue-500 font-bold text-lg uppercase"
+        >
           Trang chủ
         </Link>
-        <Link to="/jobs" className="hover:text-blue-500 font-bold text-2xl">
+        <Link
+          to="/jobs"
+          className="hover:text-blue-500 font-bold text-lg uppercase"
+        >
           Việc làm
         </Link>
         <Link
           to="/companies"
-          className="hover:text-blue-500 font-bold text-2xl"
+          className="hover:text-blue-500 font-bold text-lg uppercase"
         >
           Công ty
         </Link>
-        <Link to="/courses" className="hover:text-blue-500 font-bold text-2xl">
+        <Link
+          to="/courses"
+          className="hover:text-blue-500 font-bold text-lg uppercase"
+        >
           Khóa học
         </Link>
       </div>
@@ -38,13 +47,13 @@ const Navbar = () => {
         <Link to="/login">
           <Button
             variant="outline"
-            className="cursor-pointer w-fit text-xl py-6 px-6 lg:py-4 lg:px-4 lg:text-xl rounded-full"
+            className="cursor-pointer w-fit text-xl py-6 px-6 lg:py-4 lg:px-4 lg:text-lg rounded-full"
           >
             Đăng nhập
           </Button>
         </Link>
         <Link to="/register">
-          <Button className="cursor-pointer text-xl w-fit lg:py-4 lg:px-4 lg:text-xl py-6 px-6 rounded-full">
+          <Button className="cursor-pointer text-xl w-fit lg:py-4 lg:px-4 lg:text-lg py-6 px-6 rounded-full">
             Đăng ký
           </Button>
         </Link>

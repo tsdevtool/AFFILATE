@@ -35,7 +35,7 @@ const courses = [
     image:
       "https://files.fullstack.edu.vn/f8-prod/banners/Banner_web_ReactJS.png",
     atc: "Đăng ký ngay",
-    bgGradient: "bg-gradient-to-r from-red-700 to-yellow-500",
+    bgGradient: "bg-gradient-to-r from-blue-700 to-yellow-500",
   },
 ];
 
@@ -62,7 +62,7 @@ const HeroCoursesSection = () => {
         {courses.map((course) => (
           <SwiperSlide key={course.id}>
             <div
-              className={`flex items-center w-full h-auto py-20  px-24 rounded-4xl shadow-lg ${course.bgGradient}`}
+              className={`flex items-center w-full h-full py-20  px-24 shadow-lg ${course.bgGradient}`}
             >
               {/* Nội dung khóa học (Bên trái - 2/3) */}
               <div className="flex-[2] text-white text-left pr-6">

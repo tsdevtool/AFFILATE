@@ -37,7 +37,7 @@ const LoginPage = () => {
                 className="border p-2 w-full rounded"
               />
               {errors.email && (
-                <p className="text-red-500">{errors.email.message}</p>
+                <p className="text-blue-500">{errors.email.message}</p>
               )}
             </div>
 
@@ -49,7 +49,7 @@ const LoginPage = () => {
                 className="border p-2 w-full rounded"
               />
               {errors.password && (
-                <p className="text-red-500">{errors.password.message}</p>
+                <p className="text-blue-500">{errors.password.message}</p>
               )}
             </div>
 

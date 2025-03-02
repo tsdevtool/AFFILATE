@@ -26,7 +26,7 @@ const Hero = () => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <section className="relative w-full aspect-[16/9] max-h-screen overflow-hidden bg-red-500">
+    <section className="relative w-full aspect-[16/9] max-h-screen overflow-hidden bg-blue-500">
       <Swiper
         modules={[Pagination, Autoplay]}
         slidesPerView={1}
@@ -57,7 +57,7 @@ const Hero = () => {
                 <p className="text-lg max-md:text-xl mt-4">
                   {slide.description}
                 </p>
-                <button className="mt-6 bg-red-400/70 hover:bg-red-400 hover:text-white-600 text-white-600 px-6 py-3 rounded-lg text-lg font-bold shadow-md cursor-pointer">
+                <button className="mt-6 bg-blue-400/70 hover:bg-blue-400 hover:text-white-600 text-white-600 px-6 py-3 rounded-lg text-lg font-bold shadow-md cursor-pointer">
                   {slide.cta}
                 </button>
               </motion.div>
