@@ -1,0 +1,13 @@
+server:
+  port: 8080
+
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: false
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+  logging:
+    level:
+      root: WARN
+      org.hibernate.SQL: INFO
