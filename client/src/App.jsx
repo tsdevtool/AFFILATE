@@ -44,6 +44,7 @@ function App() {
         <Route path="/courses/:id/payment" element={<CoursePaymentPage />} />
         <Route path="/courses/:id/learn" element={<CourseLearnPage />} />
         <Route path="/my-courses" element={<MyCoursesPage />} />
+        <Route path="/companies/:id" element={<CompanyDetail />} />
         <Route path="/*" element={<JobPage />} />
       </Routes>
     </>

@@ -1,18 +1,11 @@
 import React from "react";
-
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
 import { Card, CardContent } from "../ui/card";
-const CompanyCard = ({ id, name, industry, location, logo, category }) => {
-  // const navigate = useNavigate();
 
+const CompanyCard = ({ id, name, industry, logo }) => {
   return (
-    <Link>
-      <Card
-        className={
-          "relative group overflow-hidden rounded-2xl shadow-lg transition-all duration-500 border border-gray-200 hover:border-transparent hover:bg-gradient-to-r hover:from-[#1a1a3f] hover:to-[#2c2c6c]"
-        }
-      >
+    <Link to={`/companies/${id}`}>
+      <Card className="relative group overflow-hidden rounded-2xl shadow-lg transition-all duration-500 border border-gray-200 hover:border-transparent hover:bg-gradient-to-r hover:from-[#1a1a3f] hover:to-[#2c2c6c]">
         <div className="absolute inset-0 opacity-10 group-hover:opacity-30 transition-opacity duration-500">
           <img
             src="/bg-technology.jpg"
@@ -21,9 +14,8 @@ const CompanyCard = ({ id, name, industry, location, logo, category }) => {
           />
         </div>
 
-        {/* Nội dung */}
         <CardContent className="relative z-10 p-6 flex flex-col items-center">
-          <img src={logo} alt={name} className="h-16 object-contain mb-4 " />
+          <img src={logo} alt={name} className="h-16 object-contain mb-4" />
           <h3 className="text-xl font-semibold text-gray-800 group-hover:text-white transition-colors duration-500">
             {name}
           </h3>
