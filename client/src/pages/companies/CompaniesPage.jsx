@@ -7,7 +7,7 @@ export const companiesData = [
   {
     id: "google",
     name: "Google",
-    industry: "Công nghệ",
+    industry: "Công nghệ thông tin",
     location: "Hà Nội",
     logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg",
     category: "technology",
@@ -17,7 +17,7 @@ export const companiesData = [
   {
     id: "apple",
     name: "Apple",
-    industry: "Công nghệ",
+    industry: "Công nghệ thông tin",
     location: "TP.HCM",
     logo: "https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg",
     category: "technology",
@@ -26,7 +26,7 @@ export const companiesData = [
   {
     id: "microsoft",
     name: "Microsoft",
-    industry: "Công nghệ",
+    industry: "Công nghệ thông tin",
     location: "Đà Nẵng",
     logo: "https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg",
     category: "technology",
@@ -55,7 +55,7 @@ export const companiesData = [
   {
     id: "shopee",
     name: "Shopee",
-    industry: "E-commerce",
+    industry: "Thương mại điện tử",
     location: "Đà Nẵng",
     logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Shopee.svg/300px-Shopee.svg.png",
     category: "business",
@@ -64,7 +64,7 @@ export const companiesData = [
   {
     id: "adobe",
     name: "Adobe",
-    industry: "Thiết kế đồ họa",
+    industry: "Thiết kế đồ họa & Đa phương tiện",
     location: "Hà Nội",
     logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Adobe_Corporate_wordmark.svg/1920px-Adobe_Corporate_wordmark.svg.png",
     category: "design",
@@ -74,7 +74,7 @@ export const companiesData = [
   {
     id: "canva",
     name: "Canva",
-    industry: "Thiết kế trực tuyến",
+    industry: "Thiết kế đồ họa & Đa phương tiện",
     location: "TP.HCM",
     logo: "https://upload.wikimedia.org/wikipedia/en/thumb/b/bb/Canva_Logo.svg/1920px-Canva_Logo.svg.png",
     category: "design",
@@ -84,7 +84,7 @@ export const companiesData = [
   {
     id: "pfizer",
     name: "Pfizer",
-    industry: "Dược phẩm",
+    industry: "Dược phẩm & Công nghệ sinh học",
     location: "Hà Nội",
     logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Pfizer_%282021%29.svg/1920px-Pfizer_%282021%29.svg.png",
     category: "healthcare",
@@ -94,7 +94,7 @@ export const companiesData = [
   {
     id: "johnson",
     name: "Johnson & Johnson",
-    industry: "Chăm sóc sức khỏe",
+    industry: "Chăm sóc sức khỏe & Dược phẩm",
     location: "TP.HCM",
     logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/JNJ_Logo_New.svg/1920px-JNJ_Logo_New.svg.png",
     category: "healthcare",
@@ -104,7 +104,7 @@ export const companiesData = [
   {
     id: "coursera",
     name: "Coursera",
-    industry: "Đào tạo trực tuyến",
+    industry: "Giáo dục & Đào tạo",
     location: "Hà Nội",
     logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Coursera_logo_%282020%29.svg/1920px-Coursera_logo_%282020%29.svg.png",
     category: "education",
@@ -114,7 +114,7 @@ export const companiesData = [
   {
     id: "udemy",
     name: "Udemy",
-    industry: "E-learning",
+    industry: "Giáo dục & Đào tạo",
     location: "TP.HCM",
     logo: "https://upload.wikimedia.org/wikipedia/commons/e/e3/Udemy_logo.svg",
     category: "education",
@@ -124,7 +124,7 @@ export const companiesData = [
   {
     id: "tesla",
     name: "Tesla",
-    industry: "Ô tô điện",
+    industry: "Công nghiệp ô tô & Công nghệ sạch",
     location: "Hà Nội",
     logo: "https://upload.wikimedia.org/wikipedia/commons/b/bd/Tesla_Motors.svg",
     category: "automotive",
@@ -134,7 +134,7 @@ export const companiesData = [
   {
     id: "toyota",
     name: "Toyota",
-    industry: "Ô tô",
+    industry: "Công nghiệp ô tô",
     location: "TP.HCM",
     logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Toyota.svg/1920px-Toyota.svg.png",
     category: "automotive",
@@ -144,7 +144,7 @@ export const companiesData = [
   {
     id: "samsung",
     name: "Samsung",
-    industry: "Điện tử",
+    industry: "Công nghệ thông tin & Điện tử tiêu dùng",
     location: "Đà Nẵng",
     logo: "https://upload.wikimedia.org/wikipedia/commons/2/24/Samsung_Logo.svg",
     category: "technology",

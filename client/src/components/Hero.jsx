@@ -26,7 +26,7 @@ const Hero = () => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <section className="relative w-full aspect-[16/9] max-h-screen overflow-hidden bg-blue-500">
+    <section className="relative w-full aspect-[16/9] max-h-[90vh] overflow-hidden bg-blue-500">
       <Swiper
         modules={[Pagination, Autoplay]}
         slidesPerView={1}
@@ -51,7 +51,7 @@ const Hero = () => {
                 transition={{ duration: 0.8 }}
                 className="relative z-10 text-center px-6"
               >
-                <h1 className="text-6xl max-md:text-7xl font-extrabold text-white drop-shadow-lg">
+                <h1 className="md:text-7xl sm:text-5xl text-4xl font-extrabold text-white drop-shadow-lg">
                   {slide.title}
                 </h1>
                 <p className="text-lg max-md:text-xl mt-4">

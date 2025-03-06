@@ -1,6 +1,11 @@
 import { Route, Routes } from "react-router-dom";
 import HomePage from "./pages/home/HomePage";
 import JobPage from "./pages/jobs/JobPage";
+import JobDetailPage from "./pages/jobs/JobDetailPage";
+import JobApplyPage from "./pages/jobs/JobApplyPage";
+import ConfirmApplicationPage from "./pages/jobs/ConfirmApplicationPage";
+import ApplicationSuccessPage from "./pages/jobs/ApplicationSuccessPage";
+import MyApplicationsPage from "./pages/jobs/MyApplicationsPage";
 import CompaniesPage from "./pages/companies/CompaniesPage";
 import CompanyDetail from "./pages/companies/CompanyDetail";
 import LoginPage from "./pages/auth/LoginPage";
@@ -16,6 +21,17 @@ function App() {
         <Route path="/companies" element={<CompaniesPage />} />
         <Route path="/company/:id" element={<CompanyDetail />} />
         <Route path="/jobs" element={<JobPage />} />
+        <Route path="/jobs/:id" element={<JobDetailPage />} />
+        <Route path="/jobs/:id/apply" element={<JobApplyPage />} />
+        <Route
+          path="/jobs/:id/apply/confirm"
+          element={<ConfirmApplicationPage />}
+        />
+        <Route
+          path="/jobs/:id/apply/success"
+          element={<ApplicationSuccessPage />}
+        />
+        <Route path="/my-applications" element={<MyApplicationsPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/courses" element={<CoursesPage />} />

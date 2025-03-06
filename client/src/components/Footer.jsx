@@ -3,7 +3,7 @@ import { Facebook, Instagram, Youtube, Linkedin } from "lucide-react";
 const Footer = () => {
   return (
     <footer className="bg-gray-900 text-white py-10 px-6 rounded-t-[80px] mt-6 ">
-      <div className="max-w-7xl  mx-auto grid grid-cols-2 lg:grid-cols-4 gap-8 max-md:text-center">
+      <div className="max-w-7xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-8 max-md:text-center">
         {/* Giới thiệu */}
         <div>
           <h3 className="text-lg font-semibold mb-3">Về chúng tôi</h3>
