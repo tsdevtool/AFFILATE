@@ -1,3 +1,4 @@
+import { Crown } from "lucide-react";
 import React from "react";
 
 const CourseCard = ({ course }) => {
@@ -15,22 +16,7 @@ const CourseCard = ({ course }) => {
         {course.isPro && (
           <>
             <div className="absolute top-3 left-3 bg-gray-800/60 rounded-full p-1">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="#f0b514"
-                stroke-width="3"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="lucide lucide-crown"
-                className="w-5 h-5"
-              >
-                <path d="M11.562 3.266a.5.5 0 0 1 .876 0L15.39 8.87a1 1 0 0 0 1.516.294L21.183 5.5a.5.5 0 0 1 .798.519l-2.834 10.246a1 1 0 0 1-.956.734H5.81a1 1 0 0 1-.957-.734L2.02 6.02a.5.5 0 0 1 .798-.519l4.276 3.664a1 1 0 0 0 1.516-.294z" />
-                <path d="M5 21h14" />
-              </svg>
+              <Crown color="#e8ae30" strokeWidth={3} />
             </div>
           </>
         )}
@@ -49,7 +35,9 @@ const CourseCard = ({ course }) => {
         <div className="mt-auto">
           <div className="flex items-center justify-between mt-3">
             {course.isPro ? (
-              <span className="text-red-500 font-bold">{course.price} VND</span>
+              <span className="text-blue-500 font-bold">
+                {course.price} VND
+              </span>
             ) : (
               <span className="text-green-500 font-bold">Miễn phí</span>
             )}

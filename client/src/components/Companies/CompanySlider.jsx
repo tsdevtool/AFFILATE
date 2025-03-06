@@ -1,9 +1,10 @@
 import React, { useEffect, useRef } from "react";
-import { companiesData } from "../companies/CompaniesPage";
+import { companiesData } from "../../pages/companies/CompaniesPage";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { motion } from "framer-motion";
-import CompanyCard from "@/components/CompanyCard";
+import CompanyCard from "./CompanyCard";
+
 const CompanySlider = () => {
   const companies = companiesData;
   const carouselRef = useRef(null);
