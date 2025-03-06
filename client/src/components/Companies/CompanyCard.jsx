@@ -37,32 +37,3 @@ const CompanyCard = ({ id, name, industry, location, logo, category }) => {
 };
 
 export default CompanyCard;
-
-{
-  /* <motion.div
-      whileHover={{
-        scale: 1.05,
-        backgroundImage: `url('/bg-${category}.jpg')`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        color: "white",
-        boxShadow: "0px 0px 20px rgba(255, 255, 255, 0.5)",
-      }}
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.3 }}
-      className="bg-white rounded-2xl p-4 shadow-lg flex flex-col items-center text-center relative overflow-hidden cursor-pointer"
-    >
-      <div className="absolute inset-0 bg-gray-600/20"></div>
-      <div className="relative z-10 p-4 flex flex-col items-center text-center">
-        <img src={logo} alt={name} className="w-16 h-16 object-contain mb-4 " />
-        <h2 className="text-lg font-bold">{name}</h2>
-        <p className="text-white text-lg font-bold">
-          {industry} - {location}
-        </p>
-        <Link to={`/company/${id}`} className="text-blue-500">
-          Xem chi tiết →
-        </Link>
-      </div>
-    </motion.div> */
-}
