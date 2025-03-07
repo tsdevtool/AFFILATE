@@ -184,11 +184,7 @@ const LoginPage = () => {
                   />
                 </button>
                 <button className="flex items-center justify-center py-2.5 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
-                  <img
-                    src="https://www.svgrepo.com/show/475661/github-color.svg"
-                    alt="GitHub"
-                    className="w-5 h-5"
-                  />
+                  <img src="/ico-github.jpg" alt="GitHub" className="w-5 h-5" />
                 </button>
               </div>
             </form>
