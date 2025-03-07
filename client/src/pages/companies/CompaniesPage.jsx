@@ -171,7 +171,7 @@ const CompaniesPage = () => {
       <div className="w-[80%] max-md:w-full mx-auto px-4">
         <h1 className="text-3xl font-bold">Danh sách công ty</h1>
         <CompanyFilter onFilterChange={handleFilterChange} />
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-3 gap-4 mt-6">
           {filteblueCompanies.map((company) => (
             <CompanyCard key={company.id} {...company} />
           ))}

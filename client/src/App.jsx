@@ -16,6 +16,7 @@ import CourseRegisterPage from "./pages/courses/CourseRegisterPage";
 import CourseLearnPage from "./pages/courses/CourseLearnPage";
 import MyCoursesPage from "./pages/courses/MyCoursesPage";
 import CoursePaymentPage from "./pages/courses/CoursePaymentPage";
+import BlogsPage from "./pages/blogs/BlogsPage";
 
 function App() {
   return (
@@ -44,6 +45,8 @@ function App() {
         <Route path="/courses/:id/payment" element={<CoursePaymentPage />} />
         <Route path="/courses/:id/learn" element={<CourseLearnPage />} />
         <Route path="/my-courses" element={<MyCoursesPage />} />
+        <Route path="/companies/:id" element={<CompanyDetail />} />
+        <Route path="/blogs" element={<BlogsPage />} />
         <Route path="/*" element={<JobPage />} />
       </Routes>
     </>
