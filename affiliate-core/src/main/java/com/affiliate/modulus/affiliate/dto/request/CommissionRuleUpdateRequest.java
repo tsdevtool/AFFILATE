@@ -10,5 +10,6 @@ import java.math.BigDecimal;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class CommissionRuleUpdateRequest {
     String name;
-    BigDecimal amount;
+    BigDecimal baseAmount;
+    BigDecimal incrementAmount;
 }

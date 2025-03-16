@@ -25,4 +25,6 @@ public class UserCreationRequest {
 
     @DobConstraint(min = 18, message = "INVALID_DOB")
     LocalDate dob;
+
+    String referralBy; // code of the user who referred this user
 }

@@ -2,6 +2,7 @@ package com.affiliate.modulus.auth.service.impl;
 
 import com.affiliate.exception.AppException;
 import com.affiliate.exception.ErrorCode;
+import com.affiliate.modulus.affiliate.service.AffiliateService;
 import com.affiliate.modulus.auth.constants.PredefinedRole;
 import com.affiliate.modulus.auth.dto.request.UserCreationRequest;
 import com.affiliate.modulus.auth.dto.request.UserUpdateRequest;
@@ -33,6 +34,7 @@ public class UserServiceImpl implements UserService {
     RoleRepository roleRepository;
     UserMapper userMapper;
     PasswordEncoder passwordEncoder;
+    AffiliateService affiliateService;
 
     public UserResponse createUser(UserCreationRequest request) {
         if (userRepository.existsByEmail(request.getEmail())) throw new AppException(ErrorCode.USER_EXISTED);
@@ -44,8 +46,11 @@ public class UserServiceImpl implements UserService {
         roleRepository.findById(PredefinedRole.USER_ROLE).ifPresent(roles::add);
 
         user.setRoles(roles);
+        user = userRepository.save(user);
 
-        return userMapper.toUserResponse(userRepository.save(user));
+        affiliateService.createAffiliate(user, request.getReferralBy());
+
+        return userMapper.toUserResponse(user);
     }
 
     public UserResponse getMyInfo() {

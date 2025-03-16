@@ -9,4 +9,5 @@ import java.util.List;
 public interface CommissionHistoryService {
     void createCommissionHistory(CommissionHistoryCreateRequest request);
     List<CommissionHistoryResponse> getCommissionHistoryByUserId(String userId);
+    List<CommissionHistoryResponse> getMyCommissionHistory();
 }

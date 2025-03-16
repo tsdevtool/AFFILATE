@@ -7,6 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface CommissionHistoryRepository extends JpaRepository<CommissionHistory, Long> {
-    @Query("SELECT ch FROM CommissionHistory ch WHERE ch.affiliate.userId = :userId")
+    @Query("SELECT ch FROM CommissionHistory ch WHERE ch.affiliate.user.id = :userId")
     List<CommissionHistory> findByUserId(String userId);
 }

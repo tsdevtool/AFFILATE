@@ -7,7 +7,6 @@ import lombok.experimental.FieldDefaults;
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class TrackReferralRequest {
-    String userId;
     String referralCode;
-    String commissionType;
+    Integer commissionRuleId;
 }

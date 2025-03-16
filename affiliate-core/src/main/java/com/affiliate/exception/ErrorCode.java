@@ -22,6 +22,9 @@ public enum ErrorCode {
     COMMISSION_RULE_CANNOT_BE_DELETED(1013, "Commission rule cannot be deleted", HttpStatus.BAD_REQUEST),
     MEMBERSHIP_TIER_NOT_EXISTED(1014, "Membership tier not existed", HttpStatus.NOT_FOUND),
     MEMBERSHIP_TIER_CANNOT_BE_DELETED(1015, "Membership tier cannot be deleted", HttpStatus.BAD_REQUEST),
+    COMPANY_NOT_EXISTED(1016, "Company not existed", HttpStatus.NOT_FOUND),
+    JOB_NOT_EXISTED(1017, "Job not existed", HttpStatus.NOT_FOUND),
+    JOB_APPLICATION_NOT_EXISTED(1018, "Job application not existed", HttpStatus.NOT_FOUND),
     ;
 
     ErrorCode(int code, String message, HttpStatusCode statusCode) {

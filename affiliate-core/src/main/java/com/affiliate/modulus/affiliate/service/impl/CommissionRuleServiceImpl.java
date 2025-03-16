@@ -13,6 +13,7 @@ import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -24,6 +25,7 @@ public class CommissionRuleServiceImpl implements CommissionRuleService {
     CommissionRuleMapper commissionRuleMapper;
 
     @Override
+    @Transactional
     public CommissionRuleResponse create(CommissionRuleCreateRequest request) {
         CommissionRule commissionRule = commissionRuleMapper.toEntity(request);
         commissionRuleRepository.save(commissionRule);
@@ -31,6 +33,7 @@ public class CommissionRuleServiceImpl implements CommissionRuleService {
     }
 
     @Override
+    @Transactional
     public void update(Integer id, CommissionRuleUpdateRequest request) {
         CommissionRule commissionRule = commissionRuleRepository.findById(id)
                 .orElseThrow(() -> new AppException(ErrorCode.COMMISSION_RULE_NOT_EXISTED));
@@ -39,6 +42,7 @@ public class CommissionRuleServiceImpl implements CommissionRuleService {
     }
 
     @Override
+    @Transactional
     public boolean delete(Integer id) {
         CommissionRule commissionRule = commissionRuleRepository.findById(id)
                 .orElseThrow(() -> new AppException(ErrorCode.COMMISSION_RULE_NOT_EXISTED));

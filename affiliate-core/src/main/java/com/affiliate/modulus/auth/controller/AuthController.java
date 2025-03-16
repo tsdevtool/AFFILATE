@@ -9,6 +9,7 @@ import com.affiliate.modulus.auth.dto.response.AuthResponse;
 import com.affiliate.modulus.auth.dto.response.IntrospectResponse;
 import com.affiliate.modulus.auth.service.AuthService;
 import com.nimbusds.jose.JOSEException;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -23,10 +24,11 @@ import java.text.ParseException;
 @RequestMapping("/auth")
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
+@SecurityRequirement(name = "bearerAuth")
 public class AuthController {
     AuthService authenticationService;
 
-    @PostMapping("/token")
+    @PostMapping("/login")
     ApiResponse<AuthResponse> authenticate(@RequestBody AuthRequest request) {
         var data = authenticationService.authenticate(request);
         return ApiResponse.<AuthResponse>builder().data(data).build();

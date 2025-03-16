@@ -2,9 +2,7 @@ package com.affiliate.modulus.auth.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.util.Date;
@@ -13,6 +11,8 @@ import java.util.Date;
 @Entity
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class InvalidatedToken {
     @Id
     String id;

@@ -3,9 +3,11 @@ package com.affiliate.entity;
 import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.MappedSuperclass;
+import lombok.AccessLevel;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import lombok.experimental.FieldDefaults;
 import lombok.experimental.SuperBuilder;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
@@ -21,20 +23,21 @@ import java.time.Instant;
 @SuperBuilder
 @EntityListeners(AuditingEntityListener.class)
 @NoArgsConstructor
+@FieldDefaults(level = AccessLevel.PROTECTED)
 public abstract class AuditableEntity {
     @CreatedBy
     @Column(length = 50, updatable = false)
-    protected String createdBy;
+    String createdBy;
 
     @CreatedDate
     @Column(updatable = false)
-    protected Instant createdAt = Instant.now();
+    Instant createdAt = Instant.now();
 
     @LastModifiedBy
     @Column(length = 50)
-    protected String lastModifiedBy;
+    String lastModifiedBy;
 
     @LastModifiedDate
     @Column()
-    protected Instant lastModifiedAt = Instant.now();
+    Instant lastModifiedAt = Instant.now();
 }

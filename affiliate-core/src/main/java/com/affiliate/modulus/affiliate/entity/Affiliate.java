@@ -1,9 +1,9 @@
 package com.affiliate.modulus.affiliate.entity;
 
+import com.affiliate.modulus.auth.entity.User;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.math.BigDecimal;
@@ -12,20 +12,25 @@ import java.math.BigDecimal;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Affiliate {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
 
-    String userId; //foreign key
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    User user; //foreign key
+
+    @OneToOne
+    @JoinColumn(name = "referral_by")
+    Affiliate referralBy; //foreign key
 
     @Column(unique = true)
     String referralCode;
 
     @Column(precision = 20, scale = 2)
     BigDecimal totalCommission = BigDecimal.ZERO;
-
-    @ManyToOne
-    @JoinColumn(name = "tier_id")
-    MembershipTier membershipTier;
+    Integer numberOfReferrals = 0;
 }

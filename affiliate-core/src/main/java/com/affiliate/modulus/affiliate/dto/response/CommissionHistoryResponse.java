@@ -11,7 +11,7 @@ import java.time.Instant;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class CommissionHistoryResponse {
     Long id;
-    String commissionType;
+    CommissionRuleResponse commissionRule;
     BigDecimal amount;
     Instant lastModifiedAt;
 }

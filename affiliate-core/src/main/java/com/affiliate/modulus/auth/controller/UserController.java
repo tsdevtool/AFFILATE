@@ -5,6 +5,7 @@ import com.affiliate.modulus.auth.dto.request.UserCreationRequest;
 import com.affiliate.modulus.auth.dto.request.UserUpdateRequest;
 import com.affiliate.modulus.auth.dto.response.UserResponse;
 import com.affiliate.modulus.auth.service.UserService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -17,12 +18,13 @@ import java.util.List;
 @RestController
 @RequestMapping("/users")
 @RequiredArgsConstructor
+@SecurityRequirement(name = "bearerAuth")
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @Slf4j
 public class UserController {
     UserService userService;
 
-    @PostMapping
+    @PostMapping("/register")
     ApiResponse<UserResponse> createUser(@RequestBody @Valid UserCreationRequest request) {
         return ApiResponse.<UserResponse>builder()
                 .data(userService.createUser(request))

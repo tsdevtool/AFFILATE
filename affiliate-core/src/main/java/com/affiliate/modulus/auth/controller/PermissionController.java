@@ -4,6 +4,7 @@ import com.affiliate.dto.ApiResponse;
 import com.affiliate.modulus.auth.dto.request.PermissionRequest;
 import com.affiliate.modulus.auth.dto.response.PermissionResponse;
 import com.affiliate.modulus.auth.service.PermissionService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -16,6 +17,7 @@ import java.util.List;
 @RequestMapping("/permissions")
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
+@SecurityRequirement(name = "bearerAuth")
 @Slf4j
 public class PermissionController {
     PermissionService permissionService;
