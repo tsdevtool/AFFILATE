@@ -19,7 +19,7 @@ const CompanyCard = ({ id, name, industry, logo }) => {
           <h3 className="text-xl font-semibold text-gray-800 group-hover:text-white transition-colors duration-500">
             {name}
           </h3>
-          <p className="text-sm text-gray-600 group-hover:text-gray-200 transition-colors duration-500">
+          <p className="text-sm text-gray-600 group-hover:text-gray-200 transition-colors duration-500 line-clamp-2">
             {industry}
           </p>
         </CardContent>

@@ -14,6 +14,7 @@ import {
   CheckCircle,
 } from "lucide-react";
 import MainLayout from "../layouts/MainLayout";
+import { companiesData, schoolsData } from "./CompaniesPage";
 
 const scrollbarStyles = {
   "&::-webkit-scrollbar": {
@@ -32,64 +33,111 @@ const scrollbarStyles = {
   },
 };
 
-const CompanyDetail = () => {
+const PartnerDetail = () => {
   const { id } = useParams();
 
-  // Mock data - trong thực tế sẽ fetch từ API
-  const company = {
-    id: 1,
-    name: "Tech Solutions",
-    logo: "https://api.dicebear.com/7.x/initials/svg?seed=TS",
-    industry: "Công nghệ thông tin",
-    location: "Hà Nội",
-    size: "201-500 nhân viên",
+  // Tìm kiếm đối tác từ cả hai danh sách
+  const partner = companiesData.find(c => c.id === id) || schoolsData.find(s => s.id === id);
+
+  // Xác định loại đối tác (công ty hoặc trường học)
+  const partnerType = companiesData.find(c => c.id === id) ? 'company' : 'school';
+
+  if (!partner) {
+    return (
+      <MainLayout>
+        <div className="max-w-7xl mx-auto px-4 py-12 text-center">
+          <h1 className="text-2xl font-bold text-gray-900">Không tìm thấy đối tác</h1>
+        </div>
+      </MainLayout>
+    );
+  }
+
+  // Mock data cho chi tiết
+  const partnerDetails = {
+    ...partner,
+    size: partnerType === 'company' ? "201-500 nhân viên" : "5,000-10,000 sinh viên",
     rating: 4.5,
     reviews: 128,
-    website: "https://techsolutions.com",
-    email: "contact@techsolutions.com",
+    website: partnerType === 'company' ? `https://${partner.id}.com` : `https://${partner.id}.edu.vn`,
+    email: partnerType === 'company' ? `contact@${partner.id}.com` : `info@${partner.id}.edu.vn`,
     phone: "+84 123 456 789",
     foundedYear: 2010,
-    description: `Tech Solutions là công ty công nghệ hàng đầu Việt Nam, chuyên cung cấp giải pháp phần mềm cho doanh nghiệp. 
-    Chúng tôi tự hào là đối tác tin cậy của nhiều tập đoàn lớn trong và ngoài nước.
-    
-    Với đội ngũ nhân sự giàu kinh nghiệm và đam mê công nghệ, chúng tôi luôn nỗ lực mang đến những sản phẩm chất lượng cao và dịch vụ chuyên nghiệp.`,
-    benefits: [
-      "Chế độ bảo hiểm toàn diện",
-      "Lương thưởng cạnh tranh",
-      "Môi trường làm việc năng động",
-      "Cơ hội đào tạo và phát triển",
-      "Các hoạt động team building",
-      "Chế độ nghỉ phép linh hoạt",
-    ],
-    openPositions: [
-      {
-        id: 1,
-        title: "Senior Frontend Developer",
-        type: "Full-time",
-        experience: "3-5 năm",
-        salary: "2000-3000 USD",
-        skills: ["React", "TypeScript", "Tailwind CSS"],
-        urgent: true,
-      },
-      {
-        id: 2,
-        title: "Backend Developer",
-        type: "Full-time",
-        experience: "2-4 năm",
-        salary: "1500-2500 USD",
-        skills: ["Node.js", "PostgreSQL", "Redis"],
-        urgent: false,
-      },
-      {
-        id: 3,
-        title: "Product Manager",
-        type: "Full-time",
-        experience: "5+ năm",
-        salary: "3000-4000 USD",
-        skills: ["Agile", "Product Strategy", "User Research"],
-        urgent: true,
-      },
-    ],
+    benefits: partnerType === 'company' 
+      ? [
+          "Chế độ bảo hiểm toàn diện",
+          "Lương thưởng cạnh tranh",
+          "Môi trường làm việc năng động",
+          "Cơ hội đào tạo và phát triển",
+          "Các hoạt động team building",
+          "Chế độ nghỉ phép linh hoạt",
+        ]
+      : [
+          "Học bổng cho sinh viên xuất sắc",
+          "Cơ sở vật chất hiện đại",
+          "Các chương trình trao đổi quốc tế",
+          "Cơ hội thực tập tại doanh nghiệp",
+          "Hoạt động ngoại khóa phong phú",
+          "Hỗ trợ tìm việc sau tốt nghiệp",
+        ],
+    openPositions: partnerType === 'company' 
+      ? [
+          {
+            id: 1,
+            title: "Senior Frontend Developer",
+            type: "Full-time",
+            experience: "3-5 năm",
+            salary: "2000-3000 USD",
+            skills: ["React", "TypeScript", "Tailwind CSS"],
+            urgent: true,
+          },
+          {
+            id: 2,
+            title: "Backend Developer",
+            type: "Full-time",
+            experience: "2-4 năm",
+            salary: "1500-2500 USD",
+            skills: ["Node.js", "PostgreSQL", "Redis"],
+            urgent: false,
+          },
+          {
+            id: 3,
+            title: "Product Manager",
+            type: "Full-time",
+            experience: "5+ năm",
+            salary: "3000-4000 USD",
+            skills: ["Agile", "Product Strategy", "User Research"],
+            urgent: true,
+          },
+        ]
+      : [
+          {
+            id: 1,
+            title: "Học bổng Khoa Công nghệ thông tin",
+            type: "Học bổng",
+            experience: "Sinh viên năm 2 trở lên",
+            salary: "Giảm 50% học phí",
+            skills: ["GPA 3.5+", "Kỹ năng lãnh đạo"],
+            urgent: true,
+          },
+          {
+            id: 2,
+            title: "Chương trình trao đổi sinh viên",
+            type: "Trao đổi",
+            experience: "Sinh viên năm 3, 4",
+            salary: "Hỗ trợ toàn phần",
+            skills: ["Tiếng Anh", "GPA 3.2+"],
+            urgent: false,
+          },
+          {
+            id: 3,
+            title: "Tuyển sinh viên thực tập",
+            type: "Thực tập",
+            experience: "Sinh viên năm cuối",
+            salary: "2-5 triệu/tháng",
+            skills: ["Chuyên ngành phù hợp", "Kỹ năng giao tiếp"],
+            urgent: true,
+          },
+        ],
   };
 
   return (
@@ -100,42 +148,42 @@ const CompanyDetail = () => {
           <div className="bg-white rounded-xl shadow-lg p-6">
             <div className="flex items-start gap-6">
               <img
-                src={company.logo}
-                alt={company.name}
+                src={partnerDetails.logo}
+                alt={partnerDetails.name}
                 className="w-24 h-24 rounded-lg bg-gray-100"
               />
               <div className="flex-1 min-w-0">
                 <div className="flex items-center justify-between">
                   <h1 className="text-2xl font-bold text-gray-900">
-                    {company.name}
+                    {partnerDetails.name}
                   </h1>
                   <div className="flex items-center">
                     <Star className="h-5 w-5 text-yellow-400" />
                     <span className="ml-1 text-lg font-medium text-gray-900">
-                      {company.rating}
+                      {partnerDetails.rating}
                     </span>
                     <span className="mx-2 text-gray-300">•</span>
                     <span className="text-gray-600">
-                      {company.reviews} đánh giá
+                      {partnerDetails.reviews} đánh giá
                     </span>
                   </div>
                 </div>
                 <div className="mt-2 flex flex-wrap gap-4">
                   <div className="flex items-center text-gray-600">
                     <Building2 className="h-5 w-5 mr-2" />
-                    {company.industry}
+                    {partnerDetails.industry}
                   </div>
                   <div className="flex items-center text-gray-600">
                     <MapPin className="h-5 w-5 mr-2" />
-                    {company.location}
+                    {partnerDetails.location}
                   </div>
                   <div className="flex items-center text-gray-600">
                     <Users className="h-5 w-5 mr-2" />
-                    {company.size}
+                    {partnerDetails.size}
                   </div>
                 </div>
                 <div className="mt-4 flex flex-wrap gap-2">
-                  {company.benefits.slice(0, 3).map((benefit, index) => (
+                  {partnerDetails.benefits.slice(0, 3).map((benefit, index) => (
                     <span
                       key={index}
                       className="inline-flex items-center px-3 py-1 rounded-full text-sm bg-cyan-50 text-cyan-700"
@@ -154,27 +202,25 @@ const CompanyDetail = () => {
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Left Column - Company Info */}
+          {/* Left Column - Partner Info */}
           <div className="lg:col-span-2 space-y-8">
             <div className="bg-white rounded-xl shadow-lg p-6">
               <h2 className="text-xl font-semibold text-gray-900 mb-4">
-                Giới thiệu công ty
+                Giới thiệu {partnerType === 'company' ? 'công ty' : 'trường học'}
               </h2>
               <div className="prose max-w-none">
-                {company.description.split("\n").map((paragraph, index) => (
-                  <p key={index} className="text-gray-600 mb-4">
-                    {paragraph}
-                  </p>
-                ))}
+                <p className="text-gray-600 mb-4">
+                  {partnerDetails.description}
+                </p>
               </div>
             </div>
 
             <div className="bg-white rounded-xl shadow-lg p-6">
               <h2 className="text-xl font-semibold text-gray-900 mb-4">
-                Phúc lợi
+                {partnerType === 'company' ? 'Phúc lợi' : 'Lợi ích'}
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {company.benefits.map((benefit, index) => (
+                {partnerDetails.benefits.map((benefit, index) => (
                   <div
                     key={index}
                     className="flex items-center p-4 rounded-lg bg-gray-50"
@@ -187,7 +233,7 @@ const CompanyDetail = () => {
             </div>
           </div>
 
-          {/* Right Column - Contact & Jobs */}
+          {/* Right Column - Contact & Positions */}
           <div className="space-y-8">
             <div className="bg-white rounded-xl shadow-lg p-6">
               <h2 className="text-xl font-semibold text-gray-900 mb-4">
@@ -197,30 +243,30 @@ const CompanyDetail = () => {
                 <div className="flex items-center text-gray-600">
                   <Globe className="h-5 w-5 mr-3" />
                   <a
-                    href={company.website}
+                    href={partnerDetails.website}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-cyan-600 hover:underline"
                   >
-                    {company.website}
+                    {partnerDetails.website}
                   </a>
                 </div>
                 <div className="flex items-center text-gray-600">
                   <Mail className="h-5 w-5 mr-3" />
                   <a
-                    href={`mailto:${company.email}`}
+                    href={`mailto:${partnerDetails.email}`}
                     className="text-cyan-600 hover:underline"
                   >
-                    {company.email}
+                    {partnerDetails.email}
                   </a>
                 </div>
                 <div className="flex items-center text-gray-600">
                   <Phone className="h-5 w-5 mr-3" />
-                  <span>{company.phone}</span>
+                  <span>{partnerDetails.phone}</span>
                 </div>
                 <div className="flex items-center text-gray-600">
                   <Clock className="h-5 w-5 mr-3" />
-                  <span>Thành lập năm {company.foundedYear}</span>
+                  <span>Thành lập năm {partnerDetails.foundedYear}</span>
                 </div>
               </div>
             </div>
@@ -228,17 +274,17 @@ const CompanyDetail = () => {
             <div className="bg-white rounded-xl shadow-lg p-6">
               <div className="flex items-center justify-between mb-4">
                 <h2 className="text-xl font-semibold text-gray-900">
-                  Vị trí đang tuyển
+                  {partnerType === 'company' ? 'Vị trí đang tuyển' : 'Cơ hội dành cho sinh viên'}
                 </h2>
                 <span className="text-cyan-600">
-                  {company.openPositions.length} vị trí
+                  {partnerDetails.openPositions.length} {partnerType === 'company' ? 'vị trí' : 'cơ hội'}
                 </span>
               </div>
               <div
                 className="space-y-4 max-h-[600px] overflow-auto"
                 style={scrollbarStyles}
               >
-                {company.openPositions.map((position) => (
+                {partnerDetails.openPositions.map((position) => (
                   <div
                     key={position.id}
                     className="group p-4 rounded-lg border border-gray-200 hover:border-cyan-500 transition-colors cursor-pointer"
@@ -289,4 +335,4 @@ const CompanyDetail = () => {
   );
 };
 
-export default CompanyDetail;
+export default PartnerDetail;

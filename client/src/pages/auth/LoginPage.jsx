@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
 import { motion } from "framer-motion";
-import { Loader2, Mail, Lock, AlertCircle } from "lucide-react";
+import { Loader2, Mail, Lock, AlertCircle, CheckCircle } from "lucide-react";
+import { useAuthStore } from "@/store";
 
 const loginSchema = z.object({
   email: z.string().email("Email không hợp lệ"),
@@ -14,8 +15,11 @@ const loginSchema = z.object({
 });
 
 const LoginPage = () => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [loginError, setLoginError] = useState("");
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [successMessage, setSuccessMessage] = useState("");
+  
+  const { login, isLoading, error, clearError } = useAuthStore();
 
   const {
     register,
@@ -25,19 +29,32 @@ const LoginPage = () => {
     resolver: zodResolver(loginSchema),
   });
 
-  const onSubmit = async (data) => {
-    setIsLoading(true);
-    setLoginError("");
+  // Kiểm tra xem có thông báo từ việc chuyển hướng không
+  useEffect(() => {
+    if (location.state?.message) {
+      setSuccessMessage(location.state.message);
+      // Xóa thông báo sau khi đã hiển thị
+      window.history.replaceState({}, document.title);
+    }
+    
+    // Xóa lỗi khi component unmount
+    return () => {
+      clearError();
+    };
+  }, [location, clearError]);
 
+  const onSubmit = async (data) => {
     try {
-      // Giả lập API call
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-      console.log("Dữ liệu đăng nhập:", data);
-      // TODO: Xử lý đăng nhập với backend
-    } catch (error) {
-      setLoginError("Đăng nhập thất bại. Vui lòng thử lại.");
-    } finally {
-      setIsLoading(false);
+      await login({
+        email: data.email,
+        password: data.password,
+      });
+      
+      // Đăng nhập thành công, chuyển hướng đến trang chính
+      navigate('/');
+    } catch (err) {
+      // Lỗi đã được xử lý trong store
+      console.error("Lỗi đăng nhập từ component:", err);
     }
   };
 
@@ -60,14 +77,25 @@ const LoginPage = () => {
           </div>
 
           <div className="bg-white/80 backdrop-blur-sm shadow-xl rounded-2xl p-8">
-            {loginError && (
+            {successMessage && (
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="bg-green-50 text-green-600 p-4 rounded-lg flex items-center mb-6"
+              >
+                <CheckCircle className="w-5 h-5 mr-2" />
+                {successMessage}
+              </motion.div>
+            )}
+
+            {error && (
               <motion.div
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 className="bg-red-50 text-red-500 p-4 rounded-lg flex items-center mb-6"
               >
                 <AlertCircle className="w-5 h-5 mr-2" />
-                {loginError}
+                {error}
               </motion.div>
             )}
 

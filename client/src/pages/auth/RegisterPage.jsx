@@ -1,16 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
 import { motion } from "framer-motion";
 import { Loader2, Mail, Lock, User, AlertCircle } from "lucide-react";
+import { useAuthStore } from "@/store";
 
 const registerSchema = z
   .object({
-    name: z.string().min(3, "Tên phải có ít nhất 3 ký tự"),
+    firstName: z.string().min(2, "Tên phải có ít nhất 2 ký tự"),
+    lastName: z.string().min(2, "Họ phải có ít nhất 2 ký tự"),
     email: z.string().email("Email không hợp lệ"),
     password: z.string().min(6, "Mật khẩu phải có ít nhất 6 ký tự"),
     confirmPassword: z.string(),
@@ -21,8 +23,8 @@ const registerSchema = z
   });
 
 const RegisterPage = () => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [registerError, setRegisterError] = useState("");
+  const navigate = useNavigate();
+  const { register: registerUser, isLoading, error, clearError } = useAuthStore();
 
   const {
     register,
@@ -32,19 +34,32 @@ const RegisterPage = () => {
     resolver: zodResolver(registerSchema),
   });
 
-  const onSubmit = async (data) => {
-    setIsLoading(true);
-    setRegisterError("");
+  // Xóa lỗi khi component unmount
+  useEffect(() => {
+    return () => {
+      clearError();
+    };
+  }, [clearError]);
 
+  const onSubmit = async (data) => {
     try {
-      // Giả lập API call
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-      console.log("Dữ liệu đăng ký:", data);
-      // TODO: Xử lý đăng ký với backend
-    } catch (error) {
-      setRegisterError("Đăng ký thất bại. Vui lòng thử lại.");
-    } finally {
-      setIsLoading(false);
+      await registerUser({
+        email: data.email,
+        password: data.password,
+        firstName: data.firstName,
+        lastName: data.lastName,
+        dob: "2000-01-01" // Mặc định hoặc bạn có thể thêm trường ngày sinh vào form
+      });
+      
+      // Chuyển hướng đến trang đăng nhập với thông báo thành công
+      navigate('/login', { 
+        state: { 
+          message: 'Đăng ký thành công! Vui lòng đăng nhập.' 
+        } 
+      });
+    } catch (err) {
+      // Lỗi đã được xử lý trong store
+      console.error("Lỗi từ component:", err);
     }
   };
 
@@ -65,42 +80,70 @@ const RegisterPage = () => {
           </div>
 
           <div className="bg-white/80 backdrop-blur-sm shadow-xl rounded-2xl p-8">
-            {registerError && (
+            {error && (
               <motion.div
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 className="bg-red-50 text-red-500 p-4 rounded-lg flex items-center mb-6"
               >
                 <AlertCircle className="w-5 h-5 mr-2" />
-                {registerError}
+                {error}
               </motion.div>
             )}
 
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Họ và tên
-                </label>
-                <div className="relative">
-                  <User className="w-5 h-5 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" />
-                  <input
-                    type="text"
-                    {...register("name")}
-                    className={`pl-10 pr-4 py-3 w-full border rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-colors ${
-                      errors.name ? "border-red-300" : "border-gray-300"
-                    }`}
-                    placeholder="Nhập họ và tên của bạn"
-                  />
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Họ
+                  </label>
+                  <div className="relative">
+                    <User className="w-5 h-5 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" />
+                    <input
+                      type="text"
+                      {...register("lastName")}
+                      className={`pl-10 pr-4 py-3 w-full border rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-colors ${
+                        errors.lastName ? "border-red-300" : "border-gray-300"
+                      }`}
+                      placeholder="Nguyễn"
+                    />
+                  </div>
+                  {errors.lastName && (
+                    <motion.p
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      className="mt-1 text-sm text-red-500"
+                    >
+                      {errors.lastName.message}
+                    </motion.p>
+                  )}
                 </div>
-                {errors.name && (
-                  <motion.p
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    className="mt-1 text-sm text-red-500"
-                  >
-                    {errors.name.message}
-                  </motion.p>
-                )}
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Tên
+                  </label>
+                  <div className="relative">
+                    <User className="w-5 h-5 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" />
+                    <input
+                      type="text"
+                      {...register("firstName")}
+                      className={`pl-10 pr-4 py-3 w-full border rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-colors ${
+                        errors.firstName ? "border-red-300" : "border-gray-300"
+                      }`}
+                      placeholder="Văn A"
+                    />
+                  </div>
+                  {errors.firstName && (
+                    <motion.p
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      className="mt-1 text-sm text-red-500"
+                    >
+                      {errors.firstName.message}
+                    </motion.p>
+                  )}
+                </div>
               </div>
 
               <div>
