@@ -153,27 +153,121 @@ export const companiesData = [
   },
 ];
 
+// Dữ liệu trường học
+export const schoolsData = [
+  {
+    id: "hust",
+    name: "Đại học Bách khoa Hà Nội",
+    industry: "Giáo dục đại học",
+    location: "Hà Nội",
+    logo: "https://upload.wikimedia.org/wikipedia/vi/c/cd/Logo-hust.svg",
+    category: "university",
+    description: "Đại học kỹ thuật hàng đầu Việt Nam, thành lập từ năm 1956.",
+  },
+  {
+    id: "neu",
+    name: "Đại học Kinh tế Quốc dân",
+    industry: "Giáo dục đại học",
+    location: "Hà Nội",
+    logo: "https://upload.wikimedia.org/wikipedia/vi/b/bf/Logo_NEU.svg",
+    category: "university",
+    description: "Trường đào tạo kinh tế, quản trị kinh doanh lớn nhất Việt Nam.",
+  },
+  {
+    id: "hcmus",
+    name: "ĐH Khoa học Tự nhiên TP.HCM",
+    industry: "Giáo dục đại học",
+    location: "TP.HCM",
+    logo: "https://upload.wikimedia.org/wikipedia/vi/f/fd/Logo_HCMUS.svg",
+    category: "university",
+    description: "Trường đại học hàng đầu về khoa học cơ bản, thành viên ĐHQG TP.HCM.",
+  },
+  {
+    id: "vnu",
+    name: "Đại học Quốc gia Hà Nội",
+    industry: "Giáo dục đại học",
+    location: "Hà Nội",
+    logo: "https://upload.wikimedia.org/wikipedia/vi/c/c4/Logo_Hanoi_VNU.jpg",
+    category: "university",
+    description: "Hệ thống đại học hàng đầu Việt Nam với nhiều trường thành viên uy tín.",
+  },
+  {
+    id: "fpt",
+    name: "Đại học FPT",
+    industry: "Giáo dục đại học",
+    location: "Hà Nội",
+    logo: "https://upload.wikimedia.org/wikipedia/vi/1/1d/Logo_FPT_University.png",
+    category: "university",
+    description: "Trường đại học định hướng thực hành về công nghệ thông tin và kinh doanh.",
+  },
+  {
+    id: "rmit",
+    name: "Đại học RMIT Việt Nam",
+    industry: "Giáo dục đại học",
+    location: "TP.HCM",
+    logo: "https://upload.wikimedia.org/wikipedia/vi/5/5b/Logo_RMIT_Vietnam.png",
+    category: "university",
+    description: "Đại học quốc tế với chương trình đào tạo chuẩn Úc.",
+  },
+];
+
 const CompaniesPage = () => {
-  const [filteblueCompanies, setFilteblueCompanies] = useState(companiesData);
+  const [filteredPartners, setFilteredPartners] = useState(companiesData);
+  const [activeTab, setActiveTab] = useState("companies"); // "companies" hoặc "schools"
 
   const handleFilterChange = (filters) => {
-    let filteblue = companiesData.filter(
-      (company) =>
-        company.name.toLowerCase().includes(filters.keyword.toLowerCase()) &&
-        (filters.industry ? company.industry === filters.industry : true) &&
-        (filters.location ? company.location === filters.location : true)
+    // Xác định nguồn dữ liệu dựa vào tab đang active
+    const dataSource = activeTab === "companies" ? companiesData : schoolsData;
+    
+    let filtered = dataSource.filter(
+      (partner) =>
+        partner.name.toLowerCase().includes(filters.keyword.toLowerCase()) &&
+        (filters.industry ? partner.industry === filters.industry : true) &&
+        (filters.location ? partner.location === filters.location : true)
     );
-    setFilteblueCompanies(filteblue);
+    setFilteredPartners(filtered);
+  };
+
+  // Xử lý khi chuyển tab
+  const handleTabChange = (tab) => {
+    setActiveTab(tab);
+    setFilteredPartners(tab === "companies" ? companiesData : schoolsData);
   };
 
   return (
     <MainLayout>
       <div className="w-[80%] max-md:w-full mx-auto px-4">
-        <h1 className="text-3xl font-bold">Danh sách công ty</h1>
+        <h1 className="text-3xl font-bold text-center">Danh sách đối tác</h1>
+        
+        {/* Tab Navigation */}
+        <div className="flex border-b mb-4 mt-6">
+          <button
+            className={`py-2 px-4 font-medium ${
+              activeTab === "companies" 
+                ? "text-blue-600 border-b-2 border-blue-600" 
+                : "text-gray-500 hover:text-blue-600"
+            }`}
+            onClick={() => handleTabChange("companies")}
+          >
+            Công ty
+          </button>
+          <button
+            className={`py-2 px-4 font-medium ${
+              activeTab === "schools" 
+                ? "text-blue-600 border-b-2 border-blue-600" 
+                : "text-gray-500 hover:text-blue-600"
+            }`}
+            onClick={() => handleTabChange("schools")}
+          >
+            Trường học
+          </button>
+        </div>
+        
         <CompanyFilter onFilterChange={handleFilterChange} />
-        <div className="grid grid-cols-3 gap-4">
-          {filteblueCompanies.map((company) => (
-            <CompanyCard key={company.id} {...company} />
+        
+        <div className="grid grid-cols-3 gap-4 mt-6">
+          {filteredPartners.map((partner) => (
+            <CompanyCard key={partner.id} {...partner} />
           ))}
         </div>
       </div>

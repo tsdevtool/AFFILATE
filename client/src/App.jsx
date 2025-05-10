@@ -7,7 +7,7 @@ import ConfirmApplicationPage from "./pages/jobs/ConfirmApplicationPage";
 import ApplicationSuccessPage from "./pages/jobs/ApplicationSuccessPage";
 import MyApplicationsPage from "./pages/jobs/MyApplicationsPage";
 import CompaniesPage from "./pages/companies/CompaniesPage";
-import CompanyDetail from "./pages/companies/CompanyDetail";
+import PartnerDetail from "./pages/companies/CompanyDetail";
 import LoginPage from "./pages/auth/LoginPage";
 import RegisterPage from "./pages/auth/RegisterPage";
 import CoursesPage from "./pages/courses/CoursesPage";
@@ -16,6 +16,8 @@ import CourseRegisterPage from "./pages/courses/CourseRegisterPage";
 import CourseLearnPage from "./pages/courses/CourseLearnPage";
 import MyCoursesPage from "./pages/courses/MyCoursesPage";
 import CoursePaymentPage from "./pages/courses/CoursePaymentPage";
+import BlogsPage from "./pages/blogs/BlogsPage";
+import ProfilePage from "./pages/auth/ProfilePage";
 
 function App() {
   return (
@@ -23,7 +25,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/companies" element={<CompaniesPage />} />
-        <Route path="/company/:id" element={<CompanyDetail />} />
+        <Route path="/company/:id" element={<PartnerDetail />} />
         <Route path="/jobs" element={<JobPage />} />
         <Route path="/jobs/:id" element={<JobDetailPage />} />
         <Route path="/jobs/:id/apply" element={<JobApplyPage />} />
@@ -44,6 +46,9 @@ function App() {
         <Route path="/courses/:id/payment" element={<CoursePaymentPage />} />
         <Route path="/courses/:id/learn" element={<CourseLearnPage />} />
         <Route path="/my-courses" element={<MyCoursesPage />} />
+        <Route path="/companies/:id" element={<PartnerDetail />} />
+        <Route path="/blogs" element={<BlogsPage />} />
+        <Route path="/profile" element={<ProfilePage />} />
         <Route path="/*" element={<JobPage />} />
       </Routes>
     </>
